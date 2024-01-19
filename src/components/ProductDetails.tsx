@@ -29,7 +29,7 @@ import "swiper/css/thumbs";
 // import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import Image from "next/image";
-import additionalInfoOne from "../assets/images/additional-info-one.png";
+import additionalInfoOne from "../assets/images/additional-info-one.webp";
 import { useAppDispatch, useAppSelector } from "@/redux/app/hook";
 import { RootState } from "@/redux/app/store";
 import { addToCart } from "@/redux/features/cart/cartSlice";

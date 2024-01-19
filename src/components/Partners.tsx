@@ -1,10 +1,10 @@
 import Box from "@mui/material/Box";
-import partnerOne from "../assets/images/partner-one.png";
-import partnerTwo from "../assets/images/partner-two.png";
-import partnerThree from "../assets/images/partner-three.png";
-import partnerFour from "../assets/images/partner-four.png";
-import partnerFive from "../assets/images/partner-five.png";
-import partnerSix from "../assets/images/partner-six.png";
+import partnerOne from "../assets/images/product-one.webp";
+import partnerTwo from "../assets/images/partner-two.webp";
+import partnerThree from "../assets/images/partner-three.webp";
+import partnerFour from "../assets/images/partner-four.webp";
+import partnerFive from "../assets/images/partner-five.webp";
+import partnerSix from "../assets/images/partner-six.webp";
 import Image from "next/image";
 
 export default function Partners() {

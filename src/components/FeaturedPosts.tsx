@@ -5,9 +5,9 @@ import AccessAlarmOutlinedIcon from "@mui/icons-material/AccessAlarmOutlined";
 import TimelineIcon from "@mui/icons-material/Timeline";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Image, { StaticImageData } from "next/image";
-import featuredPostOne from "../assets/images/featured-one.png";
-import featuredPostTwo from "../assets/images/featured-two.png";
-import featuredPostThree from "../assets/images/featured-three.png";
+import featuredPostOne from "../assets/images/featured-one.webp";
+import featuredPostTwo from "../assets/images/featured-two.webp";
+import featuredPostThree from "../assets/images/featured-three.webp";
 
 export default function FeaturedPosts() {
   return (

@@ -3,8 +3,8 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import cta from "../assets/images/cta-bg.png";
-import ctaMobile from "../assets/images/cta-bg-two.png";
+import cta from "../assets/images/cta-bg.webp";
+import ctaMobile from "../assets/images/cta-bg-two.webp";
 
 export default function CallToAction() {
   return (

@@ -3,10 +3,10 @@
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 import AppTheme from "./AppTheme";
-import mediaBgCoverOne from "../assets/images/media bg-cover-one.png";
-import mediaBgCoverTwo from "../assets/images/media bg-cover-two.png";
-import mediaBgCoverThree from "../assets/images/media bg-cover-three.png";
-import mediaBgCoverFour from "../assets/images/media bg-cover-four.png";
+import mediaBgCoverOne from "../assets/images/media bg-cover-one.webp";
+import mediaBgCoverTwo from "../assets/images/media bg-cover-two.webp";
+import mediaBgCoverThree from "../assets/images/media bg-cover-three.webp";
+import mediaBgCoverFour from "../assets/images/media bg-cover-four.webp";
 import { StaticImageData } from "next/image";
 
 export default function Hero() {

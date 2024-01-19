@@ -2,16 +2,16 @@ import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
-import userOne from "../assets/images/user-one.jpg";
-import testimonialOne from "../assets/images/about-one.png";
-import testimonialTwo from "../assets/images/about-two.png";
-import testimonialThree from "../assets/images/about-three.png";
-import testimonialFour from "../assets/images/about-four.png";
-import testimonialFive from "../assets/images/about-five.png";
-import testimonialSix from "../assets/images/about-six.png";
-import testimonialSeven from "../assets/images/about-seven.png";
-import testimonialEight from "../assets/images/about-eight.png";
-import testimonialNine from "../assets/images/about-nine.png";
+import userOne from "../assets/images/user-one.webp";
+import testimonialOne from "../assets/images/about-one.webp";
+import testimonialTwo from "../assets/images/about-two.webp";
+import testimonialThree from "../assets/images/about-three.webp";
+import testimonialFour from "../assets/images/about-four.webp";
+import testimonialFive from "../assets/images/about-five.webp";
+import testimonialSix from "../assets/images/about-six.webp";
+import testimonialSeven from "../assets/images/about-seven.webp";
+import testimonialEight from "../assets/images/about-eight.webp";
+import testimonialNine from "../assets/images/about-nine.webp";
 
 export default function Testimonial() {
   return (
