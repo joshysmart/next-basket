@@ -100,7 +100,7 @@ export default function Footer() {
             Get In Touch
           </Typography>
           <form action="">
-            <fieldset className="flex">
+            <fieldset className="flex max-w-80">
               <input
                 type="text"
                 name=""
@@ -108,7 +108,7 @@ export default function Footer() {
                 className="focus:outline-none border border-[#E6E6E6] rounded-[4px_0_0_4px] py-4 px-4 text-sm text-[#737373]"
                 placeholder="Your Email"
               />
-              <button className="px-6 py-4 bg-[#23A6F0] text-white text-sm rounded-[0_4px_4px_0]">
+              <button className="px-4 lg:px-6 py-4 bg-[#23A6F0] text-white text-sm rounded-[0_4px_4px_0]">
                 Subscribe
               </button>
             </fieldset>
