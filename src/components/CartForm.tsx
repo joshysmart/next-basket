@@ -3,22 +3,17 @@ import Button from "@mui/material/Button";
 import CartItem from "./CartItem";
 import React from "react";
 import { formatCurrency } from "@/utils";
+import { TItem } from "@/types";
 
 export default function CartForm({
   items,
   type,
 }: {
-  items: {
-    id: number;
-    thumbnail: string;
-    title: string;
-    price: number;
-    quantity: number;
-  }[];
+  items: TItem[];
   type: string;
 }) {
   const subtotal = items.reduce((acc, item) => {
-    return acc + item.price * item.quantity;
+    return acc + item.price! * item.quantity!;
   }, 0);
 
   const [total, setTotal] = React.useState(subtotal);

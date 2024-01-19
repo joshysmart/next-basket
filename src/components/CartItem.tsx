@@ -10,17 +10,12 @@ import React from "react";
 import { formatCurrency } from "@/utils";
 import { useAppDispatch } from "@/redux/app/hook";
 import { removeFromCart } from "@/redux/features/cart/cartSlice";
-import { WishState, removeFromWishList } from "@/redux/features/wish/wishSlice";
-import { ActionCreatorWithPayload, PayloadAction } from "@reduxjs/toolkit";
+import { removeFromWishList } from "@/redux/features/wish/wishSlice";
+import Link from "next/link";
+import { TItem } from "@/types";
 
 interface CartItemProps {
-  item: {
-    id: number;
-    thumbnail: string;
-    title: string;
-    price: number;
-    quantity: number;
-  };
+  item: TItem;
   setTotal: React.Dispatch<React.SetStateAction<number>>;
   type: string;
 }
@@ -31,7 +26,7 @@ export default function CartItem({
 }: CartItemProps) {
   const dispatch = useAppDispatch();
   const [newQuantity, setNewQuantity] = React.useState(quantity);
-  const [subTotal, setSubTotal] = React.useState(price * newQuantity);
+  const [subTotal, setSubTotal] = React.useState(price! * newQuantity!);
   const labelValues = [
     {
       label: "Title",
@@ -39,7 +34,7 @@ export default function CartItem({
     },
     {
       label: "Price",
-      value: price.toLocaleString("en-US", {
+      value: price!.toLocaleString("en-US", {
         style: "currency",
         currency: "USD",
       }),
@@ -82,7 +77,7 @@ export default function CartItem({
           }}
         >
           <Image
-            src={thumbnail}
+            src={thumbnail!}
             alt="product-thumbnail"
             width={40}
             height={0}
@@ -99,7 +94,12 @@ export default function CartItem({
         >
           <div>
             {labelValues.map((lv) => (
-              <KeyValue key={lv.label} label={`${lv.label}`} value={lv.value} />
+              <KeyValue
+                key={lv.label}
+                label={`${lv.label}`}
+                value={lv.value!}
+                id={id!}
+              />
             ))}
           </div>
           <IconButton aria-label="delete" onClick={handleRemove}>
@@ -122,10 +122,10 @@ export default function CartItem({
         <div className="flex items-center">
           <IconButton
             onClick={() => {
-              if (newQuantity > 1) {
-                setNewQuantity(newQuantity - 1);
-                setSubTotal(price * (newQuantity - 1));
-                setTotal((prev) => prev - price);
+              if (newQuantity! > 1) {
+                setNewQuantity(newQuantity! - 1);
+                setSubTotal(price! * (newQuantity! - 1));
+                setTotal((prev) => prev - price!);
               }
             }}
           >
@@ -140,29 +140,29 @@ export default function CartItem({
 
           <input
             className="p-1 w-[40px] border border-gray-500 text-center font-normal focus:outline-none text-[#252B42]"
-            value={newQuantity}
+            value={newQuantity!}
             onChange={(e) => {
               if (isNaN(Number(e.target.value)) || Number(e.target.value) < 1)
                 return;
               setNewQuantity(Number(e.target.value));
-              setSubTotal(price * Number(e.target.value));
-              if (Number(e.target.value) > newQuantity)
+              setSubTotal(price! * Number(e.target.value));
+              if (Number(e.target.value) > newQuantity!)
                 setTotal(
                   (prev) =>
-                    prev + (Number(e.target.value) - newQuantity) * price
+                    prev + (Number(e.target.value) - newQuantity!) * price!
                 );
               else
                 setTotal(
                   (prev) =>
-                    prev - (newQuantity - Number(e.target.value)) * price
+                    prev - (newQuantity! - Number(e.target.value)) * price!
                 );
             }}
           />
           <IconButton
             onClick={() => {
-              setNewQuantity(newQuantity + 1);
-              setSubTotal(price * (newQuantity + 1));
-              setTotal((prev) => prev + price);
+              setNewQuantity(newQuantity! + 1);
+              setSubTotal(price! * (newQuantity! + 1));
+              setTotal((prev) => prev + price!);
             }}
           >
             <AddIcon
@@ -174,22 +174,28 @@ export default function CartItem({
             />
           </IconButton>
         </div>
-        <KeyValue label="Total" value={formatCurrency(subTotal, "USD")} />
+        <KeyValue
+          label="Total"
+          value={formatCurrency(subTotal, "USD")}
+          id={id!}
+        />
       </Box>
       <Divider />
     </>
   );
 }
 
-function KeyValue({ label, value }: { label: string; value: string | number }) {
+function KeyValue({
+  label,
+  value,
+  id,
+}: {
+  label: string;
+  value: string | number;
+  id?: number;
+}) {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        gap: "8px",
-        alignItems: "center",
-      }}
-    >
+    <Link href={`/products/${id}`} className="flex items-center gap-2">
       <Typography
         sx={{
           fontSize: "14px",
@@ -208,6 +214,6 @@ function KeyValue({ label, value }: { label: string; value: string | number }) {
       >
         {value}
       </Typography>
-    </Box>
+    </Link>
   );
 }

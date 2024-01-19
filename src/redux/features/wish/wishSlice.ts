@@ -1,18 +1,27 @@
+import { TItem } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface WishState {
-  items: {
-    id: number;
-    thumbnail: string;
-    title: string;
-    price: number;
-    quantity: number;
-  }[];
+  items: TItem[];
+}
+
+let items = [
+  {
+    id: null,
+    thumbnail: null,
+    title: null,
+    price: null,
+    quantity: null,
+  },
+];
+
+if (typeof window !== "undefined") {
+  items = JSON.parse(window.localStorage.getItem("wishList") || "[]");
 }
 
 const initialState: WishState = {
-  items: JSON.parse(localStorage.getItem("wishList") || "[]"),
+  items,
 };
 
 export const wishSlice = createSlice({
@@ -22,7 +31,7 @@ export const wishSlice = createSlice({
     addToWishList: (state, action: PayloadAction<WishState["items"][0]>) => {
       const { payload } = action;
       const item = state.items.find((item) => item.id === payload.id);
-      if (item) {
+      if (item?.quantity && payload.quantity) {
         item.quantity += payload.quantity;
       } else {
         state.items.push(payload);

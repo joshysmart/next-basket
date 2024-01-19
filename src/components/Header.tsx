@@ -22,7 +22,6 @@ import AppTheme from "./AppTheme";
 import Link from "next/link";
 import { useAppSelector } from "@/redux/app/hook";
 import { RootState } from "@/redux/app/store";
-import CartItem from "./CartItem";
 import CartForm from "./CartForm";
 
 export default function Header() {
