@@ -20,12 +20,24 @@ export default function CartForm({
   return (
     <Box
       sx={{
-        minWidth: "100%",
+        maxWidth: "400px",
+        minWidth: {
+          xs: "300px",
+          lg: "400px",
+        },
         position: "absolute",
+        right: {
+          xs: "8px",
+          lg: "32px",
+        },
+        overflowY: "scroll",
+        maxHeight: "calc(400px)",
         padding: "16px",
-        top: "64px",
+        top: "164px",
         boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
         backgroundColor: "primary.light",
+        border: "1px solid #E5E5E5",
+        zIndex: 50,
       }}
     >
       <form
@@ -41,6 +53,7 @@ export default function CartForm({
             sx={{
               color: "primary.light",
             }}
+            className="bg-[#23A6F0]"
           >
             Checkout {formatCurrency(total, "USD")}
           </Button>

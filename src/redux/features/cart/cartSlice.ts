@@ -17,7 +17,9 @@ let items = [
 ];
 
 if (typeof window !== "undefined") {
-  items = JSON.parse(window.localStorage.getItem("carts") || "[]");
+  items = JSON.parse(
+    window.localStorage.getItem("carts") || JSON.stringify(items)
+  );
 }
 
 const initialState: CartState = {

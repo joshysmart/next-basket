@@ -25,8 +25,12 @@ import { RootState } from "@/redux/app/store";
 import CartForm from "./CartForm";
 
 export default function Header() {
-  const cartItems = useAppSelector((state: RootState) => state.cart.items);
-  const wishList = useAppSelector((state: RootState) => state.wish.items);
+  const cartItems = useAppSelector(
+    (state: RootState) => state.cart.items
+  ).filter((item) => item.id);
+  const wishList = useAppSelector(
+    (state: RootState) => state.wish.items
+  ).filter((item) => item.id);
 
   const [open, setOpen] = React.useState(false);
   const [displayCart, setDisplayCart] = React.useState(false);
@@ -53,6 +57,7 @@ export default function Header() {
           },
           fontWeight: "bold",
           fontSize: "14px",
+          position: "relative",
         }}
       >
         <Box
@@ -152,7 +157,6 @@ export default function Header() {
               fontSize: "14px",
               fontWeight: "bold",
               color: "primary.main",
-              position: "relative",
             }}
           >
             <Link href={"/login"} className="lg:flex items-center gap-2 hidden">
@@ -222,9 +226,9 @@ export default function Header() {
                 {open ? <MenuOpenIcon /> : <MenuIcon />}
               </IconButton>
             </Box>
-            {displayCart && <CartForm items={cartItems} type={"cart"} />}
-            {displayWishList && <CartForm items={wishList} type={"wish"} />}
           </Box>
+          {displayCart && <CartForm items={cartItems} type={"cart"} />}
+          {displayWishList && <CartForm items={wishList} type={"wish"} />}
         </Box>
         {open && (
           <Box

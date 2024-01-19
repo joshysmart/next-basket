@@ -17,7 +17,9 @@ let items = [
 ];
 
 if (typeof window !== "undefined") {
-  items = JSON.parse(window.localStorage.getItem("wishList") || "[]");
+  items = JSON.parse(
+    window.localStorage.getItem("wishList") || JSON.stringify(items)
+  );
 }
 
 const initialState: WishState = {
