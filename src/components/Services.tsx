@@ -1,8 +1,8 @@
-import { SvgIconComponent } from "@mui/icons-material";
 import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
-import { Box, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 export default function Services() {
   return (

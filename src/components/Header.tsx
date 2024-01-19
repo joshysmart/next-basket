@@ -20,11 +20,20 @@ import React from "react";
 
 import AppTheme from "./AppTheme";
 import Link from "next/link";
-import { Button } from "@mui/material";
+import { useAppSelector } from "@/redux/app/hook";
+import { RootState } from "@/redux/app/store";
+import CartItem from "./CartItem";
+import CartForm from "./CartForm";
 
 export default function Header() {
+  const cartItems = useAppSelector((state: RootState) => state.cart.items);
+  const wishList = useAppSelector((state: RootState) => state.wish.items);
+
   const [open, setOpen] = React.useState(false);
+  const [displayCart, setDisplayCart] = React.useState(false);
+  const [displayWishList, setDisplayWishList] = React.useState(false);
   const isLoggedIn = false;
+
   return (
     <AppTheme>
       <Box
@@ -39,7 +48,10 @@ export default function Header() {
           bgcolor: "secondary.main",
           color: "primary.light",
           py: 3,
-          px: 4,
+          px: {
+            xs: 2,
+            lg: 4,
+          },
           fontWeight: "bold",
           fontSize: "14px",
         }}
@@ -85,13 +97,16 @@ export default function Header() {
           <TwitterIcon />
         </Box>
       </Box>
-      <Box>
+      <>
         <Box
           sx={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            px: 4,
+            px: {
+              xs: 2,
+              lg: 4,
+            },
             py: 3,
           }}
         >
@@ -102,15 +117,9 @@ export default function Header() {
               gap: "120px",
             }}
           >
-            <Typography
-              sx={{
-                fontSize: "24px",
-                fontWeight: "bold",
-                color: "text.main",
-              }}
-            >
+            <Link href="/" className="text-2xl font-bold text-[#252B42]">
               Bandage
-            </Typography>
+            </Link>
 
             <Box
               sx={{
@@ -124,7 +133,7 @@ export default function Header() {
                 fontWeight: "bold",
               }}
             >
-              <Link href="">Home</Link>
+              <Link href="/">Home</Link>
               <Link href="" className="flex items-center gap-2">
                 Shop <ExpandMoreIcon />
               </Link>
@@ -137,7 +146,6 @@ export default function Header() {
           <Box
             sx={{
               display: {
-                xs: "none",
                 lg: "flex",
               },
               alignItems: "center",
@@ -145,9 +153,10 @@ export default function Header() {
               fontSize: "14px",
               fontWeight: "bold",
               color: "primary.main",
+              position: "relative",
             }}
           >
-            <Link href={"/login"} className="flex items-center gap-2">
+            <Link href={"/login"} className="lg:flex items-center gap-2 hidden">
               <PersonOutlineOutlinedIcon />
               <Typography>
                 {!isLoggedIn ? "Login / Register" : "Logout"}
@@ -157,7 +166,10 @@ export default function Header() {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                gap: "32px",
+                gap: {
+                  xs: "24px",
+                  lg: "32px",
+                },
               }}
             >
               <IconButton
@@ -175,8 +187,12 @@ export default function Header() {
                   padding: "0px",
                   color: "primary.main",
                 }}
+                onClick={() => {
+                  setDisplayWishList(false);
+                  setDisplayCart((prev) => !prev);
+                }}
               >
-                <ShoppingCartOutlinedIcon />2
+                <ShoppingCartOutlinedIcon /> {cartItems.length}
               </IconButton>
               <IconButton
                 sx={{
@@ -185,44 +201,30 @@ export default function Header() {
                   padding: "0px",
                   color: "primary.main",
                 }}
+                onClick={() => {
+                  setDisplayCart(false);
+                  setDisplayWishList((prev) => !prev);
+                }}
               >
-                <FavoriteBorderOutlinedIcon />1
+                <FavoriteBorderOutlinedIcon />
+                {wishList.length}
               </IconButton>
-            </Box>
-          </Box>
-          <Box
-            sx={{
-              display: {
-                xs: "flex",
-                lg: "none",
-              },
-              alignItems: "center",
-              gap: "24px",
-            }}
-          >
-            {!open && (
-              <IconButton sx={{ p: 0 }}>
-                <SearchIcon />
-              </IconButton>
-            )}
-            {!open && (
               <IconButton
+                aria-label="menu"
+                onClick={() => setOpen((prev) => !prev)}
                 sx={{
+                  display: {
+                    xs: "flex",
+                    lg: "none",
+                  },
                   p: 0,
                 }}
               >
-                <ShoppingCartOutlinedIcon />
+                {open ? <MenuOpenIcon /> : <MenuIcon />}
               </IconButton>
-            )}
-            <IconButton
-              aria-label="menu"
-              onClick={() => setOpen((prev) => !prev)}
-              sx={{
-                p: 0,
-              }}
-            >
-              {open ? <MenuOpenIcon /> : <MenuIcon />}
-            </IconButton>
+            </Box>
+            {displayCart && <CartForm items={cartItems} type={"cart"} />}
+            {displayWishList && <CartForm items={wishList} type={"wish"} />}
           </Box>
         </Box>
         {open && (
@@ -258,37 +260,9 @@ export default function Header() {
                 </Typography>
               </Link>
             </Box>
-            <IconButton
-              sx={{
-                padding: "0px",
-                color: "primary.main",
-              }}
-            >
-              <SearchIcon />
-            </IconButton>
-            <IconButton
-              sx={{
-                fontSize: "12px",
-                fontWeight: "normal",
-                padding: "0px",
-                color: "primary.main",
-              }}
-            >
-              <ShoppingCartOutlinedIcon />2
-            </IconButton>
-            <IconButton
-              sx={{
-                fontSize: "12px",
-                fontWeight: "normal",
-                padding: "0px",
-                color: "primary.main",
-              }}
-            >
-              <FavoriteBorderOutlinedIcon />1
-            </IconButton>
           </Box>
         )}
-      </Box>
+      </>
     </AppTheme>
   );
 }

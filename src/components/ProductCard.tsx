@@ -1,5 +1,6 @@
 import { TProduct } from "@/types";
-import { Box, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import Link from "next/link";
 

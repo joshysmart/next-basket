@@ -21,7 +21,6 @@ export default function Footer() {
             xs: "26px",
           },
           justifyContent: "space-between",
-          alignItems: "center",
           py: {
             xs: "40px",
             lg: "54px",
@@ -106,7 +105,7 @@ export default function Footer() {
                 type="text"
                 name=""
                 id=""
-                className="border border-[#E6E6E6] rounded-[4px_0_0_4px] py-4 px-4 text-sm text-[#737373]"
+                className="focus:outline-none border border-[#E6E6E6] rounded-[4px_0_0_4px] py-4 px-4 text-sm text-[#737373]"
                 placeholder="Your Email"
               />
               <button className="px-6 py-4 bg-[#23A6F0] text-white text-sm rounded-[0_4px_4px_0]">

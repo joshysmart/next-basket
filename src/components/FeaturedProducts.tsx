@@ -7,8 +7,9 @@ import React from "react";
 
 export default function FeaturedProducts() {
   const [limit, setLimit] = React.useState(10);
-  const { data: products, isLoading: loadingProducts } =
-    useGetProductsQuery(limit);
+  const { data, isLoading: loadingProducts } = useGetProductsQuery(limit);
+  const products = data?.products || [];
+  const total = data?.total;
 
   return (
     <Box
@@ -88,7 +89,7 @@ export default function FeaturedProducts() {
       >
         {loadingProducts && <CircularProgress color="primary" />}
 
-        {(products?.length ?? 0) > 0 && (
+        {total && (products?.length ?? 0) > 0 && limit < total && (
           <Button
             sx={{
               mt: "96px",
